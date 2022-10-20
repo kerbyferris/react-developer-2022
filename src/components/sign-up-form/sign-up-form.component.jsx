@@ -23,6 +23,7 @@ const SignUpForm = () => {
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -59,7 +60,7 @@ const SignUpForm = () => {
 
   return (
     <div className="sign-up-container">
-      <h2>Don't have an account?</h2>
+      <h2>I do not have an account</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput

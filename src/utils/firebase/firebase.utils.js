@@ -1,11 +1,13 @@
 import { initializeApp } from "firebase/app";
 import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signInWithRedirect,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -62,6 +64,32 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   return userDocRef;
 };
 
+export const createProductDocument = async (product) => {
+  if (!product) return;
+
+  // const { id } = product;
+  // console.log(db);
+
+  const productDocRef = doc(db, "products", product.id);
+
+  const productSnapshot = await getDoc(productDocRef);
+
+  if (!productSnapshot.exists()) {
+    const createdAt = new Date();
+
+    try {
+      await setDoc(productDocRef, {
+        ...product,
+        createdAt,
+      });
+    } catch (error) {
+      console.log("error creating the product", error.message);
+    }
+  }
+
+  return productDocRef;
+};
+
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
@@ -70,3 +98,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signInAuthUserWithEmailAndPassword = (email, password) =>
   signInWithEmailAndPassword(auth, email, password);
+
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (cb) => onAuthStateChanged(auth, cb);

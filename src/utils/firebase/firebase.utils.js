@@ -105,9 +105,6 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 export const createProductDocument = async (product) => {
   if (!product) return;
 
-  // const { id } = product;
-  // console.log(db);
-
   const productDocRef = doc(db, "products", product.id);
 
   const productSnapshot = await getDoc(productDocRef);

@@ -8,12 +8,10 @@ import Authentication from "./routes/authentication/authentication.component";
 import Shop from "./routes/shop/shop.component";
 import {
   createUserDocumentFromAuth,
-  getCategoriesAndDocuments,
   onAuthStateChangedListener,
 } from "./utils/firebase/firebase.utils";
 import { setCurrentUser } from "./store/user/user.action";
 import { useDispatch } from "react-redux";
-import { setCategoriesMap } from "./store/categories/categories.action";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,13 +24,6 @@ const App = () => {
 
       dispatch(setCurrentUser(user));
     });
-  });
-
-  useEffect(() => {
-    (async () => {
-      const categoryMap = await getCategoriesAndDocuments();
-      dispatch(setCategoriesMap(categoryMap));
-    })();
   });
 
   return (

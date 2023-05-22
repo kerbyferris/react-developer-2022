@@ -1,7 +1,12 @@
 # React Developer 2022
 
-Online store prototype leveraging React, Redux, Firebase, Stripe. Deployed with
-netlify.
+Online store prototype:
+
+- React
+- Redux
+- Firebase
+- Stripe
+- Deployed to Netlify
 
 ## Local dev
 

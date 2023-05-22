@@ -13,14 +13,33 @@ const PaymentForm = () => {
       return;
     }
 
-    const response = await fetch("/.netflify/functions/create-payment-intent", {
+    const response = await fetch("/.netlify/functions/create-payment-intent", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ amount: 10000 }),
     }).then((res) => res.json());
-    console.log(response);
+
+    const {
+      paymentIntent: { client_secret },
+    } = response;
+
+    const paymentResult = await stripe.confirmCardPayment(client_secret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+        billing_details: {
+          name: "Yihua Zhang",
+        },
+      },
+    });
+
+    if (paymentResult.error) {
+    } else {
+      if (paymentResult.paymentIntent.status === "succeeded") {
+        alert("Paymen Successful");
+      }
+    }
   };
 
   return (

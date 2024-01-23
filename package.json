@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "volta": {
-    "node": "18.10.0",
-    "yarn": "1.22.19",
+    "node": "20.11.0",
+    "yarn": "4.0.2",
     "netlify-cli": "12.01.11"
   },
   "dependencies": {

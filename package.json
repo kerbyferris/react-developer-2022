@@ -4,7 +4,7 @@
   "private": true,
   "volta": {
     "node": "20.11.0",
-    "yarn": "4.0.2",
+    "yarn": "4.1.0",
     "netlify-cli": "12.01.11"
   },
   "dependencies": {
